@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Star Wars Character Lookup</title>
+    <style>
+        /* Basic styling for form and output */
+        body { font-family: Arial, sans-serif; }
+        .form-container { margin: 20px; padding: 20px; background: #f0f0f0; border-radius: 8px; }
+        .character-info { margin-top: 20px; }
+        .error { color: red; font-weight: bold; }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <h1>Star Wars Character Lookup</h1>
+        <form method="POST">
+            <label for="character_id">Enter Character ID:</label>
+            <input type="number" id="character_id" name="character_id" required>
+            <button type="submit">Lookup</button>
+        </form>
+        
+        {% if error_message %}
+            <p class="error">{{ error_message }}</p>
+        {% endif %}
+
+        {% if character_data %}
+            <div class="character-info">
+                <h2>Character Information</h2>
+                <p><strong>Name:</strong> {{ character_data.name }}</p>
+                <p><strong>Height:</strong> {{ character_data.height }}</p>
+                <p><strong>Mass:</strong> {{ character_data.mass }}</p>
+                <p><strong>Hair Color:</strong> {{ character_data.hair_color }}</p>
+                <p><strong>Eye Color:</strong> {{ character_data.eye_color }}</p>
+                
+                {% if character_data.homeworld %}
+                    <p><strong>Homeworld:</strong> {{ character_data.homeworld }}</p>
+                {% endif %}
+                
+                {% if character_data.films %}
+                    <p><strong>Films:</strong></p>
+                    <ul>
+                        {% for film in character_data.films %}
+                            <li>{{ film }}</li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+            </div>
+        {% endif %}
+    </div>
+</body>
+</html>
+
