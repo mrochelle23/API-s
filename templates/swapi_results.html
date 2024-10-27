@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Star Wars Results
+{% endblock %}
+
+{% block content %}
+<h1>SWAPI Results</h1>
+   
+{% if record.detail == 'Not found' %}
+    <p>Data Not Found</p>
+{% else %}
+    <section>
+        <p>
+            Name: {{record.name}}
+        </p>
+        <p>
+            Height: {{record.height}}
+        </p>
+        <p>
+            Mass: {{record.mass}}
+        </p>
+        <p>
+            Hair Color: {{record.hair_color}}
+        </p>
+        <p>
+            Eye Color: {{record.eye_color}}
+        </p>
+    </section>
+{% endif %}
+
+{% endblock %}
